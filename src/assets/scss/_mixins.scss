@@ -1,0 +1,48 @@
+// ==================================================
+// Mixins
+// ==================================================
+
+
+// Media Queries
+// ==================================================
+
+$breakpoints: (
+  'desktop': 1025px,
+  'tablet': 600px
+);
+
+@mixin respond-to($breakpoint) {
+  $value: map-get($breakpoints, $breakpoint);
+
+  @if $value != null {
+    @media all and (min-width: $value) {
+      @content;
+    }
+  }
+
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Please make sure it is defined in `$breakpoints` map.";
+  }
+
+}
+
+
+// z-index
+// ==================================================
+
+$z-index: (
+  "panels": 10,
+  "map": 5
+);
+
+
+@function z-index($key) {
+  @return map-get($z-index, $key);
+}
+
+@mixin z-index($key) {
+  z-index: z-index($key);
+}
+
+

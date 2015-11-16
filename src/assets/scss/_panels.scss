@@ -1,0 +1,9 @@
+.panels {
+  position: fixed;
+  top: 50px;
+  left: 20px;
+  @include z-index('panels');
+}
+  .panels__item {
+    background: #FFF;
+  }
