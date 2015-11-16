@@ -4,6 +4,7 @@
 
   path {
     fill: yellow !important;
+    stroke: #bbb !important;
     stroke-width: 1 !important;
 
     &:hover {
@@ -13,3 +14,18 @@
 
 
 }
+
+
+
+.label {
+  pointer-events: none;
+  text-align: center;
+
+  &-innermongolia {
+    margin-top: 25px !important;
+    margin-left: 5px !important;
+  }
+
+}
+
+

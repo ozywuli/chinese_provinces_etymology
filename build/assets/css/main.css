@@ -232,11 +232,22 @@ body {
 
 .map path {
 	fill: yellow !important;
+	stroke: #bbb !important;
 	stroke-width: 1 !important;
 }
 
 .map path:hover {
 	opacity: 0.5;
+}
+
+.label {
+	pointer-events: none;
+	text-align: center;
+}
+
+.label-innermongolia {
+	margin-top: 25px !important;
+	margin-left: 5px !important;
 }
 
 .panels {

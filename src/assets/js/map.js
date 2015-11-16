@@ -66,8 +66,25 @@ var Map = React.createClass({
       zoomControl: false,
       attributionControl: false
     });
-    map.scrollWheelZoom.disable();
+    // map.scrollWheelZoom.disable();
 
+    new L.Control.Zoom({position: 'bottomright' }).addTo(map);
+    var credits = L.control.attribution().addTo(map);
+    credits.addAttribution("© <a href='https://www.mapbox.com/map-feedback/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap contributors</a>");
+/*
+    L.marker([-37.7772, 175.2606]).bindLabel('Look revealing label!', {
+      noHide: true,
+      direction: 'auto'
+    }).addTo(map);
+
+
+      L.marker([22.80935, 113.557431])
+        .bindLabel('Look revealing label!', {
+          noHide: true,
+          offset: [-35, -100]
+        })
+        .addTo(map);
+*/
 
     return map;
   },
@@ -78,33 +95,76 @@ var Map = React.createClass({
 
   createLayers: function() {
 
-    new L.Control.Zoom({position: 'bottomright' }).addTo(this.map);
-
-    var credits = L.control.attribution().addTo(this.map);
-    credits.addAttribution("© <a href='https://www.mapbox.com/map-feedback/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap contributors</a>");
-
     var myLayer = L.mapbox.featureLayer().addTo(this.map);
 
+    var thisMap = this.map;
 
-    var thisMap = this.map
-    var thisData;
 
     $.getJSON('assets/data/china_provinces_polygon.json', function(data) {
 
       myLayer.setGeoJSON(data);
 
-      myLayer.eachLayer(function(layer) {
-        layer.on('click', function(e) {
-          var provinceName = $(this)[0].feature.properties.NAME.toLowerCase().replace(/ /g, '');
 
+
+
+      myLayer.eachLayer(function(layer) {
+
+/*        layer.bindLabel(layer.feature.properties.NAME, {
+          noHide: true
+        }).addTo(thisMap);
+*/
+
+
+/*        var polygonCenter = layer.getBounds().getCenter();
+
+        L.marker(polygonCenter)
+          .bindLabel(layer.feature.properties.NAME, {
+            noHide: true,
+            offset: [-35, -100]
+          })
+          .addTo(thisMap);*/
+
+        layer.on('click', function(e) {
+
+          var provinceName = $(this)[0].feature.properties.NAME.toLowerCase().replace(/ /g, '');
           console.log(provinceName);
 
         }); // end layer click event
+
       }); // end eachLayer
 
-      console.log(data);
 
-      thisData = data;
+    L.geoJson(data, {
+      onEachFeature: function(feature, layer) {
+        var label = L.marker(layer.getBounds().getCenter(), {
+          icon: L.divIcon({
+            className: 'label label-' + layer.feature.properties.NAME.toLowerCase().replace(/ /g, ''),
+            html: layer.feature.properties.NAME,
+            iconSize: [100, 40]
+          })
+        }).addTo(thisMap);
+
+        var labelLocal = L.marker(layer.getBounds().getCenter(), {
+          icon: L.divIcon({
+            className: 'label-local',
+            html: layer.feature.properties.LOCALNAME,
+            iconSize: [100, 40]
+          })
+        }).addTo(thisMap);
+
+      }
+    });
+
+    thisMap.on('zoomend', function() {
+      console.log(thisMap.getZoom());
+      if ( thisMap.getZoom() <= 4 ) {
+        $('.label').css('display', 'none');
+      }
+      if ( thisMap.getZoom() === 5 ) {
+        $('.label').css('display', 'block'); 
+      }
+    })
+
 
     }); // end getJSON
 
