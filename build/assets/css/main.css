@@ -232,22 +232,72 @@ body {
 
 .map path {
 	fill: yellow !important;
-	stroke: #bbb !important;
+	stroke: #ddd !important;
 	stroke-width: 1 !important;
+	transition: all 150ms ease;
 }
 
 .map path:hover {
-	opacity: 0.5;
+	fill: red !important;
+}
+
+.label-innermongolia,
+.label-gansu,
+.label-shanghai,
+.label-hebei,
+.label-hainan {
+	margin-top: 00 !important;
+	margin-left: 0 !important;
 }
 
 .label {
 	pointer-events: none;
 	text-align: center;
+	font-weight: bold;
+	text-shadow: -1px -1px 0 #FFF, 1px -1px 0 #FFF, -1px 1px 0 #FFF, 1px 1px 0 #FFF;
+}
+
+.label-heilongjiang {
+	top: 50px;
 }
 
 .label-innermongolia {
-	margin-top: 25px !important;
-	margin-left: 5px !important;
+	top: 60px;
+	left: 10px;
+}
+
+.label-gansu {
+	top: 65px;
+	left: 30px;
+}
+
+.label-shanghai {
+	top: 0;
+	top: -10px;
+	left: -30px;
+}
+
+.label-shaanxi {
+	top: 50px;
+}
+
+.label-chongqing {
+	top: 25px;
+	left: -10px;
+}
+
+.label-hebei {
+	top: 20px;
+	left: -100px;
+}
+
+.label-tianjian {
+	top: 20px;
+}
+
+.label-hainan {
+	top: -40px;
+	left: -120px;
 }
 
 .panels {
@@ -259,5 +309,9 @@ body {
 
 .panels__item {
 	background: #FFF;
+}
+
+html {
+	color: red;
 }
 

@@ -2,6 +2,211 @@
 {
   "name": "Anhui",
   "name_ch": "安徽",
-  "lit": "Peaceful Badge"
+  "pinyin": "Ān​huī",
+  "lit": "Peaceful Badge",
+  "description": ""
+},
+{
+  "name": "Beijing",
+  "name_ch": "北京",
+  "pinyin": "Běi​jīng",
+  "lit": "Northern Capital",
+  "description":
+},
+{
+  "name": "Chongqing",
+  "name_ch": "重庆",
+  "pinyin": "Chóng​qìng",
+  "lit": "Double Celebration",
+  "description": ""
+},
+{
+  "name": "Fujian",
+  "name_ch": "福建",
+  "pinyin": "Fú​jiàn",
+  "lit": "Good Fortune Establishment",
+  "description": ""
+},
+{
+  "name": "Gansu",
+  "name_ch": "甘肃",
+  "pinyin": "Gān​sù",
+  "lit": "Sweet Reverence",
+  "description": ""
+},
+{
+  "name": "Guangdong",
+  "name_ch": "广东",
+  "pinyin": "Guǎng​dōng",
+  "lit": "Eastern Expanses",
+  "description": ""
+},
+{
+  "name": "Guangxi",
+  "name_ch": "广西",
+  "pinyin": "Guǎng​xī",
+  "lit": "Western Expanses",
+  "description": ""
+},
+{
+  "name": "Guizhou",
+  "name_ch": "贵州",
+  "pinyin": "Guì​zhōu",
+  "lit": "Expensive State",
+  "description": ""
+},
+{
+  "name": "Hainan",
+  "name_ch": "海南",
+  "pinyin": "Hǎi​nán",
+  "lit": "South of the Sea",
+  "description": ""
+},
+{
+  "name": "Hebei",
+  "name_ch": "河北",
+  "pinyin": "Hé​běi",
+  "lit": "North of the River",
+  "description": ""
+},
+{
+  "name": "Heilongjiang",
+  "name_ch": "黑龙江",
+  "pinyin": "Hēi​lóng​jiāng",
+  "lit": "Black Dragon River",
+  "description": ""
+},
+{
+  "name": "Henan",
+  "name_ch": "河南",
+  "pinyin": "Hé​nán",
+  "lit": "South of the River",
+  "description": ""
+},
+{
+  "name": "Hubei",
+  "name_ch": "湖北",
+  "pinyin": "Hú​běi",
+  "lit": "North of the Lake",
+  "description": ""
+},
+{
+  "name": "Hunan",
+  "name_ch": "湖南",
+  "pinyin": "Hú​běi",
+  "lit": "South of the Lake",
+  "description": ""
+},
+{
+  "name": "Jiangsu",
+  "name_ch": "江苏",
+  "pinyin": "Jiāng​sū",
+  "lit": "River Revives",
+  "description": ""
+},
+{
+  "name": "Jiangxi",
+  "name_ch": "江西",
+  "pinyin": "Jiāng​xī",
+  "lit": "West of the River",
+  "description": ""
+},
+{
+  "name": "Jilin",
+  "name_ch": "吉林",
+  "pinyin": "Jí​lín",
+  "lit": "Lucky Forest",
+  "description": ""
+},
+{
+  "name": "Liaoning",
+  "name_ch": "辽宁",
+  "pinyin": "Liáo​níng",
+  "lit": "Distant Peace",
+  "description": ""
+},
+{
+  "name": "Inner Mongolia",
+  "name_ch": "內蒙古",
+  "pinyin": "Nèi​měng​gǔ",
+  "lit": "Inner Mongolia",
+  "description": "From the perspective of Beijing, as distinguished from \"Outer Mongolia\", which became independent in the 20th century"
+},
+{
+  "name": "Ningxia",
+  "name_ch": "宁夏",
+  "pinyin": "Níng​xià",
+  "lit": "Peaceful Summer",
+  "description": ""
+},
+{
+  "name": "Qinghai",
+  "name_ch": "青海",
+  "pinyin": "Qīng​hǎi",
+  "lit": "Blue Sea",
+  "description": ""
+},
+{
+  "name": "Shaanxi",
+  "name_ch": "陕西",
+  "pinyin": "Shǎn​xī",
+  "lit": "West of the Mountain Pass",
+  "description": ""
+},
+{
+  "name": "Shandong",
+  "name_ch": "山东",
+  "pinyin": "Shān​dōng",
+  "lit": "East of the Mountains",
+  "description": ""
+},
+{
+  "name": "Shanxi",
+  "name_ch": "山西",
+  "pinyin": "Shān​xī",
+  "lit": "West of the Mountains",
+  "description": ""
+},
+{
+  "name": "Sichuan",
+  "name_ch": "四川",
+  "pinyin": "Sì​chuān",
+  "lit": "Four Rivers",
+  "description": ""
+},
+{
+  "name": "Tianjin",
+  "name_ch": "天津",
+  "pinyin": "Tiān​jīn",
+  "lit": "Heaven's Ferry Landing",
+  "description": ""
+},
+{
+  "name": "Tibet",
+  "name_ch": "西藏",
+  "pinyin": "Xī​zàng",
+  "lit": "Western Tsang",
+  "description": ""
+},
+{
+  "name": "Xinjiang",
+  "name_ch": "新疆",
+  "pinyin": "Xīn​jiāng",
+  "lit": "New Frontier",
+  "description": ""
+},
+{
+  "name": "Yunnan",
+  "name_ch": "云南",
+  "pinyin": "Yún​nán",
+  "lit": "South of the Clouds",
+  "description": ""
+},
+{
+  "name": "Zhejiang",
+  "name_ch": "浙江",
+  "pinyin": "Zhè​jiāng",
+  "lit": "Winding River",
+  "description": ""
 }
 ]

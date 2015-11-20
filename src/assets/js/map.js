@@ -26,6 +26,7 @@ var Panels = React.createClass({
   },
 
   render: function() {
+
     return (
       <div className="panels">
         <ul className="panels__container">
@@ -51,7 +52,7 @@ var Panels = React.createClass({
 /*
  * Map
  */
-L.mapbox.accessToken = 'pk.eyJ1IjoiYW9zaWthIiwiYSI6IjQzRGIxeEkifQ.7OvmyBbXwwt9Qxjlh9Qd3w';
+L.mapbox.accessToken = 'pk.eyJ1Ijoib3p5d29vbGVlIiwiYSI6ImNpaDcwdTJ2bzBld2p1bWtpeG1lYTltaGcifQ.Ocpge8p64YCB1utqFOYtog';
 
 var Map = React.createClass({
 
@@ -62,13 +63,14 @@ var Map = React.createClass({
   },
 
   createMap: function(element) {
-    var map = L.mapbox.map(element, 'mapbox.streets', {
+    var map = L.mapbox.map(element, 'ozywoolee.87aae22b', {
       zoomControl: false,
       attributionControl: false
     });
-    // map.scrollWheelZoom.disable();
+    map.scrollWheelZoom.disable();
 
-    new L.Control.Zoom({position: 'bottomright' }).addTo(map);
+    // new L.Control.Zoom({position: 'bottomright' }).addTo(map);
+
     var credits = L.control.attribution().addTo(map);
     credits.addAttribution("© <a href='https://www.mapbox.com/map-feedback/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap contributors</a>");
 /*
@@ -144,13 +146,13 @@ var Map = React.createClass({
           })
         }).addTo(thisMap);
 
-        var labelLocal = L.marker(layer.getBounds().getCenter(), {
+/*        var labelLocal = L.marker(layer.getBounds().getCenter(), {
           icon: L.divIcon({
             className: 'label-local',
             html: layer.feature.properties.LOCALNAME,
             iconSize: [100, 40]
           })
-        }).addTo(thisMap);
+        }).addTo(thisMap);*/
 
       }
     });
@@ -199,7 +201,7 @@ var Container = React.createClass({
   render: function() {
     return (
       <div className="container">
-        <Map lat="35" lon="100" zoom="4"/>
+        <Map lat="35" lon="105" zoom="5"/>
         <Panels />
       </div>
     )

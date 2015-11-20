@@ -4,11 +4,13 @@
 
   path {
     fill: yellow !important;
-    stroke: #bbb !important;
+    stroke: #ddd !important;
     stroke-width: 1 !important;
 
+    transition: all 150ms ease;
+
     &:hover {
-      opacity: 0.5;
+      fill: red !important;
     }
   }
 
@@ -17,13 +19,59 @@
 
 
 
+%margin-zero {
+  margin-top: 00 !important;
+  margin-left: 0 !important;
+}
+
+
+
 .label {
   pointer-events: none;
   text-align: center;
+  font-weight: bold;
+  text-shadow: -1px -1px 0 #FFF, 1px -1px 0 #FFF, -1px 1px 0 #FFF, 1px 1px 0 #FFF;
 
+
+  &-heilongjiang {
+    top: 50px;
+  }
   &-innermongolia {
-    margin-top: 25px !important;
-    margin-left: 5px !important;
+    top: 60px;
+    left: 10px;
+    @extend %margin-zero;
+  }
+  &-gansu {
+    top: 65px;
+    left: 30px;
+    @extend %margin-zero;
+    
+  }
+  &-shanghai {
+    @extend %margin-zero;
+    top: 0;
+    top: -10px;
+    left: -30px;
+  }
+  &-shaanxi {
+    top: 50px;
+  }
+  &-chongqing {
+    top: 25px;
+    left: -10px;
+  }
+  &-hebei {
+    @extend %margin-zero;
+    top: 20px;
+    left: -100px;
+  }
+  &-tianjian {
+    top: 20px;
+  }
+  &-hainan {
+    @extend %margin-zero;
+    top: -40px;
+    left: -120px;
   }
 
 }
