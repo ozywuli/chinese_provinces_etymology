@@ -15,6 +15,7 @@ var babelify = require('babelify');
 var watchify = require('watchify');
 var notify = require('gulp-notify');
 
+var jsonlint = require('gulp-jsonlint');
 
 
 function handleErrors() {
@@ -54,6 +55,8 @@ function compileCSS() {
 }
 function compileData() {
   return gulp.src('src/assets/data/*')
+    .pipe(jsonlint())
+    .pipe(jsonlint.reporter())
     .pipe(gulp.dest('build/assets/data'))
 }
 
