@@ -17,6 +17,8 @@ var Panels = React.createClass({
     $.getJSON('assets/data/china_provinces_etymology.json', function(data) {
       var provinces = data;
 
+      console.log(1);
+
       if (this.isMounted()) {
         this.setState({
           provinces: provinces
@@ -26,7 +28,6 @@ var Panels = React.createClass({
   },
 
   render: function() {
-
     return (
       <div className="panels">
         <ul className="panels__container">
@@ -69,25 +70,8 @@ var Map = React.createClass({
     });
     map.scrollWheelZoom.disable();
 
-    // new L.Control.Zoom({position: 'bottomright' }).addTo(map);
-
     var credits = L.control.attribution().addTo(map);
     credits.addAttribution("© <a href='https://www.mapbox.com/map-feedback/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap contributors</a>");
-/*
-    L.marker([-37.7772, 175.2606]).bindLabel('Look revealing label!', {
-      noHide: true,
-      direction: 'auto'
-    }).addTo(map);
-
-
-      L.marker([22.80935, 113.557431])
-        .bindLabel('Look revealing label!', {
-          noHide: true,
-          offset: [-35, -100]
-        })
-        .addTo(map);
-*/
-
     return map;
   },
 
@@ -106,25 +90,7 @@ var Map = React.createClass({
 
       myLayer.setGeoJSON(data);
 
-
-
-
       myLayer.eachLayer(function(layer) {
-
-/*        layer.bindLabel(layer.feature.properties.NAME, {
-          noHide: true
-        }).addTo(thisMap);
-*/
-
-
-/*        var polygonCenter = layer.getBounds().getCenter();
-
-        L.marker(polygonCenter)
-          .bindLabel(layer.feature.properties.NAME, {
-            noHide: true,
-            offset: [-35, -100]
-          })
-          .addTo(thisMap);*/
 
         layer.on('click', function(e) {
 
@@ -136,36 +102,30 @@ var Map = React.createClass({
       }); // end eachLayer
 
 
-    L.geoJson(data, {
-      onEachFeature: function(feature, layer) {
-        var label = L.marker(layer.getBounds().getCenter(), {
-          icon: L.divIcon({
-            className: 'label label-' + layer.feature.properties.NAME.toLowerCase().replace(/ /g, ''),
-            html: layer.feature.properties.NAME,
-            iconSize: [100, 40]
-          })
-        }).addTo(thisMap);
+      // Grab labels for each province form json and center them in the province polygon derived from coordinates
+      L.geoJson(data, {
+        onEachFeature: function(feature, layer) {
+          var label = L.marker(layer.getBounds().getCenter(), {
+            icon: L.divIcon({
+              className: 'label label-' + layer.feature.properties.NAME.toLowerCase().replace(/ /g, ''),
+              html: layer.feature.properties.NAME,
+              iconSize: [100, 40]
+            })
+          }).addTo(thisMap);
+        }
+      });
 
-/*        var labelLocal = L.marker(layer.getBounds().getCenter(), {
-          icon: L.divIcon({
-            className: 'label-local',
-            html: layer.feature.properties.LOCALNAME,
-            iconSize: [100, 40]
-          })
-        }).addTo(thisMap);*/
 
-      }
-    });
-
-    thisMap.on('zoomend', function() {
-      console.log(thisMap.getZoom());
-      if ( thisMap.getZoom() <= 4 ) {
-        $('.label').css('display', 'none');
-      }
-      if ( thisMap.getZoom() === 5 ) {
-        $('.label').css('display', 'block'); 
-      }
-    })
+      // Hide province labels when zoomed out too far
+      thisMap.on('zoomend', function() {
+        console.log(thisMap.getZoom());
+        if ( thisMap.getZoom() <= 4 ) {
+          $('.label').css('display', 'none');
+        }
+        if ( thisMap.getZoom() === 5 ) {
+          $('.label').css('display', 'block'); 
+        }
+      })
 
 
     }); // end getJSON
