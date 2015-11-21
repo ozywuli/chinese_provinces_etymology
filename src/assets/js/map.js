@@ -92,10 +92,19 @@ var Map = React.createClass({
 
       myLayer.eachLayer(function(layer) {
 
+        var content = 'test';
+
+        layer.bindPopup(content)
+
+
         layer.on('click', function(e) {
 
           var provinceName = $(this)[0].feature.properties.NAME.toLowerCase().replace(/ /g, '');
           console.log(provinceName);
+
+          // pan to polygon
+
+          thisMap.setView(layer.getBounds().getCenter(), 5);
 
         }); // end layer click event
 

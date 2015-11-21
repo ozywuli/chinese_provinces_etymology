@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var rename = require('gulp-rename');
+var fileinclude = require('gulp-file-include');
 
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
@@ -31,7 +32,10 @@ function handleErrors() {
 
 
 function compileHTML() {
-  return gulp.src('src/*.html')
+  gulp.src('src/*.html')
+    .pipe(fileinclude({
+      prefix: '@@'
+    }))
     .pipe(gulp.dest('build/'));
 }
 function compileCSS() {
