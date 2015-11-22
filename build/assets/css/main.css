@@ -239,7 +239,6 @@ body {
 }
 
 .map path {
-	fill: yellow !important;
 	stroke: #ddd !important;
 	stroke-width: 1 !important;
 	transition: all 150ms ease;
@@ -310,13 +309,24 @@ body {
 
 .panels {
 	position: fixed;
-	top: 50px;
+	top: 70px;
 	left: 20px;
+	width: 200px;
 	z-index: 10;
 }
 
 .panels__item {
+	position: absolute;
 	background: #FFF;
+	border-radius: 3px;
+	padding: 10px;
+	opacity: 0;
+	visibility: hidden;
+}
+
+.active {
+	opacity: 1;
+	visibility: visible;
 }
 
 .henkubao-header {

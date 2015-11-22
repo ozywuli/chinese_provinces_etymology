@@ -1,9 +1,21 @@
 .panels {
   position: fixed;
-  top: 50px;
+  top: 70px;
   left: 20px;
+  width: 200px;
   @include z-index('panels');
 }
+
   .panels__item {
+    position: absolute;
     background: #FFF;
+    border-radius: 3px;
+    padding: 10px;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .active {
+    opacity: 1;
+    visibility: visible;
   }

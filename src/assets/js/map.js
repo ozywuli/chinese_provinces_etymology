@@ -38,6 +38,10 @@ var Panels = React.createClass({
                   <h3>
                     {province.name}
                   </h3>
+                  <p>{province.name_ch}</p>
+                  <p>{province.pinyin}</p>
+                  <p>{province.lit}</p>
+                  <p>{province.description}</p>
                 </li>
               )
             }) // end provinces
@@ -92,15 +96,28 @@ var Map = React.createClass({
 
       myLayer.eachLayer(function(layer) {
 
-        var content = 'test';
+        var allLayer = layer;
 
+        allLayer.setStyle({fillColor: 'yellow'});
+
+        var content = 'test';
         layer.bindPopup(content)
 
 
         layer.on('click', function(e) {
 
+          myLayer.eachLayer(function(layer) {
+            layer.setStyle({fillColor: 'yellow'});
+          });
+
+          $(this)[0].setStyle({fillColor: 'red'});
+
           var provinceName = $(this)[0].feature.properties.NAME.toLowerCase().replace(/ /g, '');
-          console.log(provinceName);
+
+
+          $('.panels__item').removeClass('active');
+          
+          $('[itemid="'+provinceName+'"]').addClass('active');
 
           // pan to polygon
 
