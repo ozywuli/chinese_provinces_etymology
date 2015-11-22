@@ -31,15 +31,8 @@ var Panels = React.createClass({
         <ul className="panels__container">
           {
             this.state.provinces.map(function(province) {
-              for (var key in province) {
-                if (province.hasOwnProperty(key)) {
-
-                }
-
-              }
               return (
                 <li className="panels__item" itemID={province.name.toLowerCase().replace(/ /g, '')}>
-                  
                   <h3>
                     {province.name}
                   </h3>
@@ -102,6 +95,7 @@ var Map = React.createClass({
       myLayer.eachLayer(function(layer) {
 
         var allLayer = layer;
+        console.log(allLayer);
 
         // set all polygon color to yellow
         allLayer.setStyle({fillColor: 'yellow'});
@@ -127,11 +121,22 @@ var Map = React.createClass({
 
         }); // end layer click event
 
+
+
+          var label = L.marker(layer.getBounds().getCenter(), {
+            icon: L.divIcon({
+              className: 'label label-' + layer.feature.properties.NAME.toLowerCase().replace(/ /g, ''),
+              html: layer.feature.properties.NAME,
+              iconSize: [100, 40]
+            })
+          }).addTo(thisMap);
+
+
       }); // end eachLayer
 
 
       // Grab labels for each province form json and center them in the province polygon derived from coordinates
-      L.geoJson(data, {
+/*      L.geoJson(data, {
         onEachFeature: function(feature, layer) {
           var label = L.marker(layer.getBounds().getCenter(), {
             icon: L.divIcon({
@@ -143,7 +148,7 @@ var Map = React.createClass({
         }
       });
 
-
+*/
       // Hide province labels when zoomed out too far
       thisMap.on('zoomend', function() {
         if ( thisMap.getZoom() <= 4 ) {
