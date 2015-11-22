@@ -133,7 +133,7 @@
   "description": "From the perspective of Beijing, as distinguished from \"Outer Mongolia\", which became independent in the 20th century"
 },
 {
-  "name": "Ningxia",
+  "name": "Ningxia Hui",
   "name_ch": "宁夏",
   "pinyin": "Níng​xià",
   "lit": "Peaceful Summer",
@@ -147,8 +147,15 @@
   "description": ""
 },
 {
-  "name": "Shaanxi",
+  "name": "Shanghai",
   "name_ch": "陕西",
+  "pinyin": "Shàng​hǎi",
+  "lit": "Upon the Sea",
+  "description": ""
+},
+{
+  "name": "Shaanxi",
+  "name_ch": "上海",
   "pinyin": "Shǎn​xī",
   "lit": "West of the Mountain Pass",
   "description": ""

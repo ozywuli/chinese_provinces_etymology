@@ -16,7 +16,6 @@ var Panels = React.createClass({
   componentDidMount: function() {
     $.getJSON('assets/data/china_provinces_etymology.json', function(data) {
       var provinces = data;
-
       if (this.isMounted()) {
         this.setState({
           provinces: provinces
@@ -38,7 +37,7 @@ var Panels = React.createClass({
                   </h3>
                   <p>{province.name_ch}</p>
                   <p>{province.pinyin}</p>
-                  <p>{province.lit}</p>
+                  <p className="panels__lit">{province.lit}</p>
                   <p>{province.description}</p>
                 </li>
               )
@@ -71,6 +70,7 @@ var Map = React.createClass({
       attributionControl: false
     });
     map.scrollWheelZoom.disable();
+    map.doubleClickZoom.disable(); 
 
     var credits = L.control.attribution().addTo(map);
     credits.addAttribution("© <a href='https://www.mapbox.com/map-feedback/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap contributors</a>");
@@ -91,18 +91,52 @@ var Map = React.createClass({
       // use the callback data to set the features layer
       myLayer.setGeoJSON(data);
 
+
       // loop through each layer from data callback
       myLayer.eachLayer(function(layer) {
 
         var allLayer = layer;
-        console.log(allLayer);
 
         // set all polygon color to yellow
         allLayer.setStyle({fillColor: 'yellow'});
 
+
+        var layerName = layer.feature.properties.NAME.toLowerCase().replace(/ /g, '');
+
+        // Grab labels for each province form json and center them in the province polygon derived from coordinates
+        var label = L.marker(layer.getBounds().getCenter(), {
+          icon: L.divIcon({
+            className: 'label--name label label-' + layerName,
+            html: layer.feature.properties.NAME,
+            iconSize: [100, 40]
+          })
+        }).addTo(thisMap);
+
+
+        var litLabel = L.marker(layer.getBounds().getCenter(), {
+          icon: L.divIcon({
+            className: 'label label-' + layerName + ' ' + 'hidden label--lit label--lit-' + layerName,
+            html: layer.feature.properties.NAME,
+            iconSize: [100, 40]
+          })
+        }).addTo(thisMap);
+
+
         layer.on('click', function(e) {
 
           var provinceName = $(this)[0].feature.properties.NAME.toLowerCase().replace(/ /g, '');
+
+          
+            $('.label--lit').addClass('hidden');
+          
+
+          $('.label--name').removeClass('hidden');
+
+          $('.label-' + provinceName).addClass('hidden');
+
+
+          $('.label--lit-'+provinceName).removeClass('hidden').html($('[itemid="'+provinceName+'"] .panels__lit').html());
+
 
           // reset all polygon colors to yellow
           myLayer.eachLayer(function(layer) {
@@ -123,32 +157,14 @@ var Map = React.createClass({
 
 
 
-          var label = L.marker(layer.getBounds().getCenter(), {
-            icon: L.divIcon({
-              className: 'label label-' + layer.feature.properties.NAME.toLowerCase().replace(/ /g, ''),
-              html: layer.feature.properties.NAME,
-              iconSize: [100, 40]
-            })
-          }).addTo(thisMap);
-
 
       }); // end eachLayer
 
 
-      // Grab labels for each province form json and center them in the province polygon derived from coordinates
-/*      L.geoJson(data, {
-        onEachFeature: function(feature, layer) {
-          var label = L.marker(layer.getBounds().getCenter(), {
-            icon: L.divIcon({
-              className: 'label label-' + layer.feature.properties.NAME.toLowerCase().replace(/ /g, ''),
-              html: layer.feature.properties.NAME,
-              iconSize: [100, 40]
-            })
-          }).addTo(thisMap);
-        }
-      });
 
-*/
+
+
+
       // Hide province labels when zoomed out too far
       thisMap.on('zoomend', function() {
         if ( thisMap.getZoom() <= 4 ) {
@@ -193,8 +209,8 @@ var Container = React.createClass({
   render: function() {
     return (
       <div className="container">
-        <Map lat="35" lon="105" zoom="5"/>
         <Panels />
+        <Map lat="35" lon="105" zoom="5"/>
       </div>
     )
   }

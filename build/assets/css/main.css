@@ -308,6 +308,10 @@ body {
 	left: -120px;
 }
 
+.lit-label {
+	display: none;
+}
+
 .panels {
 	position: fixed;
 	top: 70px;
