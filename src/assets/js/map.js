@@ -17,8 +17,6 @@ var Panels = React.createClass({
     $.getJSON('assets/data/china_provinces_etymology.json', function(data) {
       var provinces = data;
 
-      console.log(1);
-
       if (this.isMounted()) {
         this.setState({
           provinces: provinces
@@ -33,8 +31,15 @@ var Panels = React.createClass({
         <ul className="panels__container">
           {
             this.state.provinces.map(function(province) {
+              for (var key in province) {
+                if (province.hasOwnProperty(key)) {
+
+                }
+
+              }
               return (
                 <li className="panels__item" itemID={province.name.toLowerCase().replace(/ /g, '')}>
+                  
                   <h3>
                     {province.name}
                   </h3>
@@ -86,41 +91,38 @@ var Map = React.createClass({
   createLayers: function() {
 
     var myLayer = L.mapbox.featureLayer().addTo(this.map);
-
     var thisMap = this.map;
-
 
     $.getJSON('assets/data/china_provinces_polygon.json', function(data) {
 
+      // use the callback data to set the features layer
       myLayer.setGeoJSON(data);
 
+      // loop through each layer from data callback
       myLayer.eachLayer(function(layer) {
 
         var allLayer = layer;
 
+        // set all polygon color to yellow
         allLayer.setStyle({fillColor: 'yellow'});
-
-        var content = 'test';
-        layer.bindPopup(content)
-
 
         layer.on('click', function(e) {
 
+          var provinceName = $(this)[0].feature.properties.NAME.toLowerCase().replace(/ /g, '');
+
+          // reset all polygon colors to yellow
           myLayer.eachLayer(function(layer) {
             layer.setStyle({fillColor: 'yellow'});
           });
 
+          // set active polygon color to red
           $(this)[0].setStyle({fillColor: 'red'});
 
-          var provinceName = $(this)[0].feature.properties.NAME.toLowerCase().replace(/ /g, '');
-
-
-          $('.panels__item').removeClass('active');
-          
+          // set active class to corresponding panel
+          $('.panels__item').removeClass('active');          
           $('[itemid="'+provinceName+'"]').addClass('active');
 
           // pan to polygon
-
           thisMap.setView(layer.getBounds().getCenter(), 5);
 
         }); // end layer click event
@@ -144,7 +146,6 @@ var Map = React.createClass({
 
       // Hide province labels when zoomed out too far
       thisMap.on('zoomend', function() {
-        console.log(thisMap.getZoom());
         if ( thisMap.getZoom() <= 4 ) {
           $('.label').css('display', 'none');
         }
