@@ -7,3 +7,14 @@
 @import 'panels';
 @import '../../../../partials/includes';
 @import '../../../../partials/browserupgrade';
+
+
+.toggle {
+  position: fixed;
+  top: 50%;
+  left: 10px;
+  display: block;
+  background: #FFF;
+  color: #000;
+}
+

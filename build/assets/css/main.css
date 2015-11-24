@@ -316,7 +316,6 @@ body {
 	position: fixed;
 	top: 70px;
 	left: 20px;
-	width: 200px;
 	z-index: 10;
 }
 
@@ -326,6 +325,7 @@ body {
 	border-radius: 3px;
 	padding: 15px;
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+	width: 300px;
 	opacity: 0;
 	visibility: hidden;
 	-webkit-transform: translate3d(20px, 20px, 0);
@@ -334,7 +334,7 @@ body {
 }
 
 .panels__item h3 {
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 	font-size: 2.4rem;
 	font-weight: bold;
 }
@@ -354,12 +354,26 @@ body {
 	transform: translate3d(0, 0, 0);
 }
 
+.panels__row {
+	margin-bottom: 10px;
+}
+
+.panels__cell {
+	display: inline-block;
+	width: 50%;
+}
+
+.panels__cell:nth-of-type(odd) {
+	font-weight: bold;
+}
+
 .henkubao-header {
 	position: fixed;
 	top: 0;
 	right: 0;
 	left: 0;
 	background: #FFF;
+	border-bottom: 1px solid #f1f1f1;
 	padding: 15px 20px;
 	z-index: 1000000;
 }
@@ -394,5 +408,14 @@ body {
 	z-index: 9999999;
 	background: #000;
 	color: #FFF;
+}
+
+.toggle {
+	position: fixed;
+	top: 50%;
+	left: 10px;
+	display: block;
+	background: #FFF;
+	color: #000;
 }
 

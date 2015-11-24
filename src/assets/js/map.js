@@ -2,6 +2,9 @@
 
 module.exports = function() {
 
+var toggled = false;
+
+
 /*
  * Panels
  */
@@ -31,14 +34,25 @@ var Panels = React.createClass({
           {
             this.state.provinces.map(function(province) {
               return (
-                <li className="panels__item" itemID={province.name.toLowerCase().replace(/ /g, '')}>
-                  <h3>
-                    {province.name}
-                  </h3>
-                  <p>{province.name_ch}</p>
-                  <p>{province.pinyin}</p>
-                  <p className="panels__lit">{province.lit}</p>
-                  <p>{province.description}</p>
+                <li className="panels__item" itemID={province.name.toLowerCase().replace(/['\s]/g, '')}>
+                   <h3>
+                      {province.name}
+                    </h3>
+                    <div className="panels__row">
+                      <div className="panels__cell">Simplified Chinese</div>
+                      <div className="panels__cell">{province.name_ch}</div>
+                    </div>
+                    <div className="panels__row">
+                      <div className="panels__cell">Pinyin</div>
+                      <div className="panels__cell">{province.pinyin}</div>
+                    </div>
+                    <div className="panels__row">
+                      <div className="panels__cell">Literal Meaning</div>
+                      <div className="panels__cell panels__lit">{province.lit}</div>
+                    </div>
+                    <div className="panels__row">
+                      {province.description}
+                    </div>
                 </li>
               )
             }) // end provinces
@@ -69,7 +83,7 @@ var Map = React.createClass({
       zoomControl: false,
       attributionControl: false
     });
-    map.scrollWheelZoom.disable();
+    // map.scrollWheelZoom.disable();
     map.doubleClickZoom.disable(); 
 
     var credits = L.control.attribution().addTo(map);
@@ -101,12 +115,12 @@ var Map = React.createClass({
         allLayer.setStyle({fillColor: 'yellow'});
 
 
-        var layerName = layer.feature.properties.NAME.toLowerCase().replace(/ /g, '');
+        var layerName = layer.feature.properties.NAME.toLowerCase().replace(/['\s]/g, '');
 
         // Grab labels for each province form json and center them in the province polygon derived from coordinates
         var label = L.marker(layer.getBounds().getCenter(), {
           icon: L.divIcon({
-            className: 'label--name label label-' + layerName,
+            className: 'label--name label label-' + layerName + ' ' + 'label--name-' + layerName,
             html: layer.feature.properties.NAME,
             iconSize: [100, 40]
           })
@@ -124,18 +138,32 @@ var Map = React.createClass({
 
         layer.on('click', function(e) {
 
-          var provinceName = $(this)[0].feature.properties.NAME.toLowerCase().replace(/ /g, '');
+          var provinceName = $(this)[0].feature.properties.NAME.toLowerCase().replace(/['\s]/g, '');
 
+
+$('.label--lit-'+provinceName).html($('[itemid="'+provinceName+'"] .panels__lit').html());
+
+          console.log(toggled);
           
+          if (toggled === false) {
+            console.log(false);
             $('.label--lit').addClass('hidden');
-          
+            $('.label--name').removeClass('hidden');
+            $('.label--name-' + provinceName).addClass('hidden');
+            $('.label--lit-' + provinceName).removeClass('hidden');
 
-          $('.label--name').removeClass('hidden');
+/*          $('.label--lit-'+provinceName).removeClass('hidden').html($('[itemid="'+provinceName+'"] .panels__lit').html());
+*/
+          } else {
+            console.log(true);
+            $('.label--lit').removeClass('hidden');
+            $('.label--name').addClass('hidden');
+            $('.label--lit-' + provinceName).addClass('hidden');
+            $('.label--name-' + provinceName).removeClass('hidden');
 
-          $('.label-' + provinceName).addClass('hidden');
+          }
 
 
-          $('.label--lit-'+provinceName).removeClass('hidden').html($('[itemid="'+provinceName+'"] .panels__lit').html());
 
 
           // reset all polygon colors to yellow
@@ -191,6 +219,43 @@ var Map = React.createClass({
     this.setupMap();
     this.createLayers();
 
+
+    
+
+    $('.toggle').on('click', function(e) {
+      e.preventDefault();
+
+      if (toggled === false) {
+          var store = [];
+
+          $('.label--lit').each(function() {
+            store.push($(this).html().toLowerCase().replace(/['\s]/g, ''));
+            
+          });
+
+          for (var i = 0; i < store.length; i++) {
+            $('.label--lit-'+store[i]).html($('[itemid="'+store[i]+'"] .panels__lit').html());
+          }
+
+          toggled = true;
+      }
+
+
+
+
+
+      if ($('.label--lit').hasClass('hidden')) {
+        $('.label--lit').removeClass('hidden');
+        $('.label--name').addClass('hidden');
+      } else {
+        $('.label--name').removeClass('hidden');
+        $('.label--lit').addClass('hidden');
+      }
+
+
+
+    });
+
   },
 
   render: function() {
@@ -200,6 +265,11 @@ var Map = React.createClass({
   }
 
 });
+
+
+
+
+
 
 
 /*
@@ -217,11 +287,21 @@ var Container = React.createClass({
 });
 
 
+
+
+
 // Render the React component
 React.render(
   <Container />,
   document.getElementById('mount')
 )
+
+
+
+
+
+
+
 
 } // end module export
 })() // end anonymous wrapper
