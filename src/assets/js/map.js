@@ -141,7 +141,7 @@ var Map = React.createClass({
           var provinceName = $(this)[0].feature.properties.NAME.toLowerCase().replace(/['\s]/g, '');
 
 
-$('.label--lit-'+provinceName).html($('[itemid="'+provinceName+'"] .panels__lit').html());
+          $('.label--lit-'+provinceName).html($('[itemid="'+provinceName+'"] .panels__lit').html());
 
           console.log(toggled);
           
@@ -152,8 +152,6 @@ $('.label--lit-'+provinceName).html($('[itemid="'+provinceName+'"] .panels__lit'
             $('.label--name-' + provinceName).addClass('hidden');
             $('.label--lit-' + provinceName).removeClass('hidden');
 
-/*          $('.label--lit-'+provinceName).removeClass('hidden').html($('[itemid="'+provinceName+'"] .panels__lit').html());
-*/
           } else {
             console.log(true);
             $('.label--lit').removeClass('hidden');
@@ -238,19 +236,22 @@ $('.label--lit-'+provinceName).html($('[itemid="'+provinceName+'"] .panels__lit'
           }
 
           toggled = true;
+      } else if ( toggled === true ) {
+        toggled = false;
       }
 
 
-
-
-
-      if ($('.label--lit').hasClass('hidden')) {
-        $('.label--lit').removeClass('hidden');
+      if ( toggled === true ) {
+        console.log(false);
         $('.label--name').addClass('hidden');
-      } else {
+        $('.label--lit').removeClass('hidden');
+      } else if ( toggled === false ) {
+        console.log(true);
         $('.label--name').removeClass('hidden');
         $('.label--lit').addClass('hidden');
       }
+
+
 
 
 
