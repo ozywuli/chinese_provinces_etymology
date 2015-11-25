@@ -32,6 +32,8 @@
   font-weight: bold;
   text-shadow: -1px -1px 0 #FFF, 1px -1px 0 #FFF, -1px 1px 0 #FFF, 1px 1px 0 #FFF;
 
+  transition: all 150ms ease;
+
 
   &-heilongjiang {
     top: 50px;
@@ -78,7 +80,10 @@
 
 
 .lit-label {
-  display: none;
+  opacity: 0;
+  visibility: hidden;
 }
+
+
 
 

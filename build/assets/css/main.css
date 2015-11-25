@@ -165,7 +165,8 @@ body {
  */
 
 .hidden {
-	display: none !important;
+	visibility: hidden;
+	opacity: 0;
 }
 
 /*
@@ -263,6 +264,7 @@ body {
 	text-align: center;
 	font-weight: bold;
 	text-shadow: -1px -1px 0 #FFF, 1px -1px 0 #FFF, -1px 1px 0 #FFF, 1px 1px 0 #FFF;
+	transition: all 150ms ease;
 }
 
 .label-heilongjiang {
@@ -309,7 +311,8 @@ body {
 }
 
 .lit-label {
-	display: none;
+	opacity: 0;
+	visibility: hidden;
 }
 
 .panels {
