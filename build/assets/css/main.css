@@ -3,6 +3,10 @@
    License: none (public domain)
 */
 
+* {
+	box-sizing: border-box;
+}
+
 html,
 body,
 div,
@@ -148,6 +152,7 @@ html {
 
 body {
 	font-size: 1.5rem;
+	line-height: 1.5;
 }
 
 #mount {
@@ -315,6 +320,26 @@ body {
 	visibility: hidden;
 }
 
+.info-panel {
+	position: fixed;
+	max-width: 300px;
+	top: 100px;
+	right: 20px;
+	background: #FFF;
+	border: 1px solid #f1f1f1;
+	padding: 20px;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+	visibility: hidden;
+	opacity: 0;
+	transition: all 150ms ease;
+	z-index: 15;
+}
+
+.info-panel h1 {
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
 .panels {
 	position: fixed;
 	top: 70px;
@@ -420,5 +445,79 @@ body {
 	display: block;
 	background: #FFF;
 	color: #000;
+}
+
+.info-toggle {
+	position: fixed;
+	top: 70px;
+	right: 20px;
+	display: inline-block;
+	background: #FFF;
+	border-radius: 50%;
+	z-index: 15;
+}
+
+.info-toggle svg {
+	display: block;
+	width: 25px;
+	height: 25px;
+}
+
+.pulse {
+	position: absolute;
+	top: -2px;
+	left: -2px;
+	width: 29px;
+	height: 29px;
+	border: 1px solid #000;
+	border-radius: 50%;
+	opacity: 0;
+}
+
+.pulsate {
+	-webkit-animation: pulsate 500ms ease-out;
+	animation: pulsate 500ms ease-out;
+	-webkit-animation-iteration-count: 1;
+	animation-iteration-count: 1;
+}
+
+@-webkit-keyframes pulsate {
+
+0% {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	opacity: 0;
+}
+
+50% {
+	opacity: 1;
+}
+
+100% {
+	-webkit-transform: scale(1.2);
+	transform: scale(1.2);
+	opacity: 0;
+}
+
+}
+
+@keyframes pulsate {
+
+0% {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	opacity: 0;
+}
+
+50% {
+	opacity: 1;
+}
+
+100% {
+	-webkit-transform: scale(1.2);
+	transform: scale(1.2);
+	opacity: 0;
+}
+
 }
 

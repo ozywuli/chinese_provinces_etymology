@@ -18,3 +18,52 @@
   color: #000;
 }
 
+.info-toggle {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  display: inline-block;
+  background: #FFF;
+  border-radius: 50%;
+  @include z-index("info-toggle");
+
+
+
+  svg {
+    display: block;
+    width: 25px;
+    height: 25px;
+  }
+}
+
+.pulse {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 29px;
+  height: 29px;
+  border: 1px solid #000;
+  border-radius:: 50%;
+  opacity: 0;
+
+
+}
+
+.pulsate {
+  animation: pulsate 500ms ease-out;
+  animation-iteration-count: 1; 
+}
+
+@keyframes pulsate {
+    0% {
+      transform: scale(1);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.2);
+      opacity: 0;
+    }
+}

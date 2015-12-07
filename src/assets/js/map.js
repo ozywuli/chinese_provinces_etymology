@@ -3,7 +3,32 @@
 module.exports = function() {
 
 var toggled = false;
+var $infoToggle = $('.info-toggle');
+var $infoPanel = $('.info-panel');
+var $pulse = $('.pulse');
 
+$infoToggle.on('click', '.pulse', function(e) {
+
+  e.preventDefault();
+  if (!$infoPanel.hasClass('active')) {
+    $infoPanel.addClass('active');
+
+    var pulse = $pulse.clone().removeClass('pulsate');
+    $(this).remove();
+    $infoToggle.append(pulse);
+    pulse.addClass('pulsate');
+
+  } else {
+
+    var pulse = $pulse.clone().removeClass('pulsate');
+    $(this).remove();
+    $infoToggle.append(pulse);
+    pulse.addClass('pulsate');
+
+    $infoPanel.removeClass('active');
+
+  }
+});
 
 /*
  * Panels
@@ -218,7 +243,7 @@ var Map = React.createClass({
     this.createLayers();
 
 
-    
+
 
     $('.toggle').on('click', function(e) {
       e.preventDefault();
