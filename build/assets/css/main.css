@@ -320,6 +320,15 @@ body {
 	visibility: hidden;
 }
 
+.label__text {
+	transition: all 150ms ease;
+}
+
+.label__text--active {
+	-webkit-transform: scale(1.2);
+	transform: scale(1.2);
+}
+
 .info-panel {
 	position: fixed;
 	max-width: 300px;

@@ -84,6 +84,11 @@
   visibility: hidden;
 }
 
-
+.label__text {
+  transition: all 150ms ease;
+}
+.label__text--active {
+  transform: scale(1.2);
+}
 
 

@@ -146,7 +146,7 @@ var Map = React.createClass({
         var label = L.marker(layer.getBounds().getCenter(), {
           icon: L.divIcon({
             className: 'label--name label label-' + layerName + ' ' + 'label--name-' + layerName,
-            html: layer.feature.properties.NAME,
+            html: '<div class="label__text">' + layer.feature.properties.NAME + '</div>',
             iconSize: [100, 40]
           })
         }).addTo(thisMap);
@@ -155,7 +155,7 @@ var Map = React.createClass({
         var litLabel = L.marker(layer.getBounds().getCenter(), {
           icon: L.divIcon({
             className: 'label label-' + layerName + ' ' + 'hidden label--lit label--lit-' + layerName,
-            html: layer.feature.properties.NAME,
+            html: '<div class="label__text">' + layer.feature.properties.NAME + '</div>',
             iconSize: [100, 40]
           })
         }).addTo(thisMap);
@@ -166,10 +166,10 @@ var Map = React.createClass({
           var provinceName = $(this)[0].feature.properties.NAME.toLowerCase().replace(/['\s]/g, '');
 
 
-          $('.label--lit-'+provinceName).html($('[itemid="'+provinceName+'"] .panels__lit').html());
+          $('.label--lit-'+provinceName + ' ' + '.label__text').html($('[itemid="'+provinceName+'"] .panels__lit').html());
 
-          console.log(toggled);
-          
+
+
           if (toggled === false) {
             console.log(false);
             $('.label--lit').addClass('hidden');
@@ -200,6 +200,8 @@ var Map = React.createClass({
           // set active class to corresponding panel
           $('.panels__item').removeClass('active');          
           $('[itemid="'+provinceName+'"]').addClass('active');
+          $('.label__text').removeClass('label__text--active');
+          $('.label-' + provinceName + ' ' + '.label__text').addClass('label__text--active');
 
           // pan to polygon
           thisMap.setView(layer.getBounds().getCenter(), 5);
