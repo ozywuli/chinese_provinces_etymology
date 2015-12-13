@@ -250,16 +250,19 @@ var Map = React.createClass({
     $('.toggle').on('click', function(e) {
       e.preventDefault();
 
+
       if (toggled === false) {
           var store = [];
 
+
           $('.label--lit').each(function() {
-            store.push($(this).html().toLowerCase().replace(/['\s]/g, ''));
+            console.log( $(this).children().html() );
+            store.push($(this).children().html().toLowerCase().replace(/['\s]/g, ''));
             
           });
 
           for (var i = 0; i < store.length; i++) {
-            $('.label--lit-'+store[i]).html($('[itemid="'+store[i]+'"] .panels__lit').html());
+            $('.label--lit-'+store[i]).html( '<div class="label__text">' + $('[itemid="'+store[i]+'"] .panels__lit').html() + '</div>');
           }
 
           toggled = true;
